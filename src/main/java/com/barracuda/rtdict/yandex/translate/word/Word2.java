@@ -14,8 +14,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public final class Word2 {
 
-    public final Head head;
-    public final Def def[];
+    public Head head;
+    public Def def[];
+
+    public Word2() {
+
+    }
 
     @JsonCreator
     public Word2(@JsonProperty("head") Head head, @JsonProperty("def") Def[] def) {
