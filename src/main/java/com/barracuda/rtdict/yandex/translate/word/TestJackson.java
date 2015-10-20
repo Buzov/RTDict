@@ -19,7 +19,7 @@ public class TestJackson {
     public static void main(String[] args) throws IOException {
         //1. Convert Java object to JSON format
         ObjectMapper mapper = new ObjectMapper();
-        Word2 word = mapper.readValue(new File("./json/lookup.json"), Word2.class);
+        Word word = mapper.readValue(new File("./json/lookup_1.json"), Word.class);
         System.out.println(word);
     }
 }

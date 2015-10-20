@@ -1,0 +1,17 @@
+{
+    "head": {},
+    "def": [{
+            "text": "time",
+            "pos": "noun",
+            "ts": "taɪm"
+        }, {
+            "text": "time",
+            "pos": "adjective",
+            "ts": "taɪm"
+            
+        }, {
+            "text": "time",
+            "pos": "verb",
+            "ts": "taɪm"
+        }]
+}
