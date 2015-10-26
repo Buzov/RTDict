@@ -1,8 +1,5 @@
 package com.barracuda.rtdict.yandex.translate.parser.word.gson;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 /**
  *
  * @author RT
@@ -15,8 +12,7 @@ public class Mean {
         
     }
 
-    @JsonCreator
-    public Mean(@JsonProperty("text") String text) {
+    public Mean(String text) {
         this.text = text;
     }
 

@@ -1,7 +1,5 @@
 package com.barracuda.rtdict.yandex.translate.parser.word.gson;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 /**
  *
  * @author RT
@@ -15,8 +13,7 @@ public class Syn {
 
     }
 
-    public Syn(@JsonProperty("text") String text,
-            @JsonProperty("pos") String pos) {
+    public Syn(String text, String pos) {
         this.text = text;
         this.pos = pos;
     }

@@ -2,6 +2,7 @@ package com.barracuda.rtdict.yandex.translate.parser.word.gson;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /**
  *
@@ -12,14 +13,14 @@ public class Def {
     private String text;
     private String pos;
     private String ts;
-    private Tr tr[];
+    private List<Tr> tr;
     
     public Def() {
         
     }
 
     @JsonCreator
-    public Def(@JsonProperty("text") String text, @JsonProperty("pos") String pos, @JsonProperty("ts") String ts, @JsonProperty("tr") Tr[] tr) {
+    public Def(@JsonProperty("text") String text, @JsonProperty("pos") String pos, @JsonProperty("ts") String ts, @JsonProperty("tr") List<Tr>  tr) {
         this.text = text;
         this.pos = pos;
         this.ts = ts;
@@ -50,11 +51,11 @@ public class Def {
         this.ts = ts;
     }
 
-    public Tr[] getTr() {
+    public List<Tr>  getTr() {
         return tr;
     }
 
-    public void setTr(Tr[] tr) {
+    public void setTr(List<Tr>  tr) {
         this.tr = tr;
     }
 

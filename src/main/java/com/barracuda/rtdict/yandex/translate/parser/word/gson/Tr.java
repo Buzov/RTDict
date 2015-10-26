@@ -1,7 +1,7 @@
 package com.barracuda.rtdict.yandex.translate.parser.word.gson;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -11,25 +11,60 @@ public class Tr {
 
     private String text;
     private String pos;
-    private Syn syn[];
-    private Mean mean[];
-    private Ex ex[];
+    private List<Syn> syn = new ArrayList<>();
+    private List<Mean> mean = new ArrayList<>();
+    private List<Ex> ex = new ArrayList<>();
 
     public Tr() {
 
     }
 
-    @JsonCreator
-    public Tr(@JsonProperty("text") String text,
-            @JsonProperty("pos") String pos,
-            @JsonProperty("syn") Syn[] syn,
-            @JsonProperty("mean") Mean[] mean,
-            @JsonProperty("ex") Ex[] ex) {
+    public Tr(String text,
+            String pos,
+            List<Syn> syn,
+            List<Mean> mean,
+            List<Ex> ex) {
         this.text = text;
         this.pos = pos;
         this.syn = syn;
         this.mean = mean;
         this.ex = ex;
+    }
+    
+    public void addSyn(Syn syn) {
+        this.syn.add(syn);
+    }
+    
+    public void addMean(String text, String pos) {
+        addSyn(new Syn(text, pos));
+    }
+    
+    public void removeSyn(int id) {
+        syn.remove(id);
+    }
+    
+    public void addMean(Mean mean) {
+        this.mean.add(mean);
+    }
+    
+    public void addMean(String mean) {
+        addMean(new Mean(mean));
+    }
+    
+    public void removeMean(int id) {
+        mean.remove(id);
+    }
+    
+    public void addEx(Ex ex) {
+        this.ex.add(ex);
+    }
+    
+    public void addEx(String text) {
+        addEx(new Ex(text));
+    }
+    
+    public void removeEx(int id) {
+        ex.remove(id);
     }
 
     public String getText() {
@@ -48,27 +83,27 @@ public class Tr {
         this.pos = pos;
     }
 
-    public Syn[] getSyn() {
+    public List<Syn> getSyn() {
         return syn;
     }
 
-    public void setSyn(Syn[] syn) {
+    public void setSyn(List<Syn> syn) {
         this.syn = syn;
     }
 
-    public Mean[] getMean() {
+    public List<Mean> getMean() {
         return mean;
     }
 
-    public void setMean(Mean[] mean) {
+    public void setMean(List<Mean> mean) {
         this.mean = mean;
     }
 
-    public Ex[] getEx() {
+    public List<Ex> getEx() {
         return ex;
     }
 
-    public void setEx(Ex[] ex) {
+    public void setEx(List<Ex> ex) {
         this.ex = ex;
     }
 

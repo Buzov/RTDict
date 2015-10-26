@@ -1,7 +1,7 @@
 package com.barracuda.rtdict.yandex.translate.parser.word.gson;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -9,22 +9,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public final class Word {
 
-    public Def def[];
+    public List<Def> def = new ArrayList<>();
     
     public Word() {
         
     }
 
-    @JsonCreator
-    public Word(@JsonProperty("def") Def[] def) {
+    public Word(List<Def> def) {
         this.def = def;
     }
 
-    public Def[] getDef() {
+    public List<Def> getDef() {
         return def;
     }
 
-    public void setDef(Def[] def) {
+    public void setDef(List<Def> def) {
         this.def = def;
     }
    
