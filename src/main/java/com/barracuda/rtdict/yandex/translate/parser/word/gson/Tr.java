@@ -1,4 +1,4 @@
-package com.barracuda.rtdict.yandex.translate.parser.word;
+package com.barracuda.rtdict.yandex.translate.parser.word.gson;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,9 +11,6 @@ public class Tr {
 
     private String text;
     private String pos;
-    private String gen;
-    private String asp;
-    private String anm;
     private Syn syn[];
     private Mean mean[];
     private Ex ex[];
@@ -25,17 +22,11 @@ public class Tr {
     @JsonCreator
     public Tr(@JsonProperty("text") String text,
             @JsonProperty("pos") String pos,
-            @JsonProperty("gen") String gen,
-            @JsonProperty("asp") String asp,
-            @JsonProperty("anm") String anm,
             @JsonProperty("syn") Syn[] syn,
             @JsonProperty("mean") Mean[] mean,
             @JsonProperty("ex") Ex[] ex) {
         this.text = text;
         this.pos = pos;
-        this.gen = gen;
-        this.asp = asp;
-        this.anm = anm;
         this.syn = syn;
         this.mean = mean;
         this.ex = ex;
@@ -55,30 +46,6 @@ public class Tr {
 
     public void setPos(String pos) {
         this.pos = pos;
-    }
-
-    public String getGen() {
-        return gen;
-    }
-
-    public void setGen(String gen) {
-        this.gen = gen;
-    }
-
-    public String getAsp() {
-        return asp;
-    }
-
-    public void setAsp(String asp) {
-        this.asp = asp;
-    }
-
-    public String getAnm() {
-        return anm;
-    }
-
-    public void setAnm(String anm) {
-        this.anm = anm;
     }
 
     public Syn[] getSyn() {
@@ -118,20 +85,7 @@ public class Tr {
             sb.append(pos);
             sb.append(", ");
         }
-        if (gen != null) {
-            sb.append("gen=");
-            sb.append(gen);
-            sb.append(", ");
-        }
-        if (asp != null) {
-            sb.append("asp=");
-            sb.append(asp);
-            sb.append(", ");
-        }
-        if (anm != null) {
-            sb.append("anm=");
-            sb.append(anm);
-        }
+
         sb.append("\n");
         if (getSyn() != null) {
             sb.append("     ");

@@ -1,4 +1,4 @@
-package com.barracuda.rtdict.yandex.translate.parser.word;
+package com.barracuda.rtdict.yandex.translate.parser.word.gson;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

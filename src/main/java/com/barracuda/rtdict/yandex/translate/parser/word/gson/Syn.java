@@ -1,4 +1,4 @@
-package com.barracuda.rtdict.yandex.translate.parser.word;
+package com.barracuda.rtdict.yandex.translate.parser.word.gson;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -10,21 +10,15 @@ public class Syn {
 
     private String text;
     private String pos;
-    private String gen;
-    private String anm;
 
     public Syn() {
 
     }
 
     public Syn(@JsonProperty("text") String text,
-            @JsonProperty("pos") String pos,
-            @JsonProperty("gen") String gen,
-            @JsonProperty("anm") String anm) {
+            @JsonProperty("pos") String pos) {
         this.text = text;
         this.pos = pos;
-        this.gen = gen;
-        this.anm = anm;
     }
 
     public String getText() {
@@ -43,21 +37,6 @@ public class Syn {
         this.pos = pos;
     }
 
-    public String getGen() {
-        return gen;
-    }
-
-    public void setGen(String gen) {
-        this.gen = gen;
-    }
-
-    public String getAnm() {
-        return anm;
-    }
-
-    public void setAnm(String anm) {
-        this.anm = anm;
-    }
 
     @Override
     public String toString() {
@@ -71,17 +50,8 @@ public class Syn {
         if (pos != null) {
             sb.append("pos=");
             sb.append(pos);
-            sb.append(", ");
         }
-        if (gen != null) {
-            sb.append("gen=");
-            sb.append(gen);
-            sb.append(", ");
-        }
-        if (anm != null) {
-            sb.append("anm=");
-            sb.append(anm);
-        }
+
         //sb.append("\n");
         return sb.toString();
     }
