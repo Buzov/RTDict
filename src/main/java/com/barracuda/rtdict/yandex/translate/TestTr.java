@@ -14,8 +14,8 @@ import java.net.URISyntaxException;
  */
 public class TestTr {
     public static void main(String[] args) throws IOException, URISyntaxException {
-        String dictKey = "";
-        String trKey = "";
+        String dictKey = "dict.1.1.20151014T112649Z.36a0cda4022040a7.9b9f5602220606208bcbe2a65ca0aa0513f0c736";
+        String trKey = "trnsl.1.1.20151014T105905Z.8db55b8c8bfbb2c0.16a40a0210e9f962ab4f6e8b69a986c978005aa9";
         YandexDictionary yandexDictionary = new YandexDictionary(dictKey);
         YandexTranslate yandexTranslate = new YandexTranslate(trKey);
         String word = "time";

@@ -6,11 +6,11 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 
 /**
  *
@@ -18,7 +18,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
  */
 public abstract class YandexAbstract implements YandexInterface {
     
-    protected static final String LANG = "en";
+    protected static final String LANG = "en-ru";
 
     protected String scheme = "https";
     protected String host;
@@ -71,23 +71,51 @@ public abstract class YandexAbstract implements YandexInterface {
     }
     
     protected String getResponse(URI uri) throws IOException {
+        System.out.println(uri.toString());
         String responseAsString = null;
-        HttpGet httpget = new HttpGet(uri);
+        try (CloseableHttpClient httpclient = HttpClients.createDefault()) { 
+            HttpGet httpget = new HttpGet(uri);
+            System.out.println("Executing request " + httpget.getRequestLine());
+            try (CloseableHttpResponse response = httpclient.execute(httpget)) {
+                System.out.println("----------------------------------------");
+                System.out.println(response.getStatusLine());
 
+                // Get hold of the response entity
+                HttpEntity entity = response.getEntity();
+
+                // If the response does not enclose an entity, there is no need
+                // to bother about connection release
+                if (entity != null) {
+                    try (InputStream instream = entity.getContent() // Closing the input stream will trigger connection release
+                    ) {
+                        instream.read();
+                        responseAsString = IOUtils.toString(instream);
+                        // do something useful with the response
+                    } catch (IOException ex) {
+                        // In case of an IOException the connection will be released
+                        // back to the connection manager automatically
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+ 
+        /*String responseAsString = null;
+        HttpGet httpget = new HttpGet(uri);
         HttpClient httpclient = new DefaultHttpClient();
         HttpResponse response = httpclient.execute(httpget);
         HttpEntity entity = response.getEntity();
         if (entity != null) {
-            InputStream instream = null;
-            try {
-                instream = entity.getContent();
-                responseAsString = IOUtils.toString(instream);
-            } finally {
-                if (instream != null)
-                    instream.close();
-            }
-
+        InputStream instream = null;
+        try {
+        instream = entity.getContent();
+        responseAsString = IOUtils.toString(instream);
+        } finally {
+        if (instream != null)
+        instream.close();
         }
+        }*/
         return responseAsString;
     }
         
