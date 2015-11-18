@@ -89,7 +89,7 @@ public abstract class YandexAbstract implements YandexInterface {
                     try (InputStream instream = entity.getContent() // Closing the input stream will trigger connection release
                     ) {
                         instream.read();
-                        responseAsString = IOUtils.toString(instream);
+                        responseAsString = IOUtils.toString(instream, "UTF-8");
                         // do something useful with the response
                     } catch (IOException ex) {
                         // In case of an IOException the connection will be released
