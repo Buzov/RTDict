@@ -1,7 +1,6 @@
 package com.barracuda.rtdict.yandex.translate.parser.word.gson;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -9,21 +8,21 @@ import java.util.List;
  */
 public final class Word {
 
-    public List<Def> def = new ArrayList<>();
+    public Set<Def> def;
     
     public Word() {
         
     }
 
-    public Word(List<Def> def) {
+    public Word(Set<Def> def) {
         this.def = def;
     }
 
-    public List<Def> getDef() {
+    public Set<Def> getDef() {
         return def;
     }
 
-    public void setDef(List<Def> def) {
+    public void setDef(Set<Def> def) {
         this.def = def;
     }
    

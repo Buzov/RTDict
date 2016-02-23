@@ -1,7 +1,6 @@
 package com.barracuda.rtdict.yandex.translate.parser.word.gson;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -10,7 +9,7 @@ import java.util.List;
 public class Ex {
 
     private String text;
-    private List<TrSecond> tr = new ArrayList<>();
+    private Set<TrSecond> tr;
     
     public Ex() {
         
@@ -20,7 +19,7 @@ public class Ex {
         this.text = text;
     }
 
-    public Ex(String text, List<TrSecond> tr) {
+    public Ex(String text, Set<TrSecond> tr) {
         this.text = text;
         this.tr = tr;
     }
@@ -45,11 +44,11 @@ public class Ex {
         this.text = text;
     }
 
-    public List<TrSecond> getTr() {
+    public Set<TrSecond> getTr() {
         return tr;
     }
 
-    public void setTr(List<TrSecond> tr) {
+    public void setTr(Set<TrSecond> tr) {
         this.tr = tr;
     }
 

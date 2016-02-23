@@ -1,7 +1,7 @@
 package com.barracuda.rtdict.yandex.translate.parser.word.gson;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -11,9 +11,9 @@ public class Tr {
 
     private String text;
     private String pos;
-    private List<Syn> syn = new ArrayList<>();
-    private List<Mean> mean = new ArrayList<>();
-    private List<Ex> ex = new ArrayList<>();
+    private Set<Syn> syn;
+    private Set<Mean> mean;
+    private Set<Ex> ex;
 
     public Tr() {
 
@@ -21,9 +21,9 @@ public class Tr {
 
     public Tr(String text,
             String pos,
-            List<Syn> syn,
-            List<Mean> mean,
-            List<Ex> ex) {
+            Set<Syn> syn,
+            Set<Mean> mean,
+            Set<Ex> ex) {
         this.text = text;
         this.pos = pos;
         this.syn = syn;
@@ -83,27 +83,27 @@ public class Tr {
         this.pos = pos;
     }
 
-    public List<Syn> getSyn() {
+    public Set<Syn> getSyn() {
         return syn;
     }
 
-    public void setSyn(List<Syn> syn) {
+    public void setSyn(Set<Syn> syn) {
         this.syn = syn;
     }
 
-    public List<Mean> getMean() {
+    public Set<Mean> getMean() {
         return mean;
     }
 
-    public void setMean(List<Mean> mean) {
+    public void setMean(Set<Mean> mean) {
         this.mean = mean;
     }
 
-    public List<Ex> getEx() {
+    public Set<Ex> getEx() {
         return ex;
     }
 
-    public void setEx(List<Ex> ex) {
+    public void setEx(Set<Ex> ex) {
         this.ex = ex;
     }
 
