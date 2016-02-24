@@ -1,12 +1,23 @@
 package com.barracuda.rtdict.yandex.translate.parser.word.gson;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  *
  * @author RT
  */
-public class Syn {
+@Entity
+@Table(name = "synonyms")
+public class Syn extends Model implements Serializable{
+    
+    private static final long serialVersionUID = 7524146001604523603L;
 
+    @Column(name = "text")
     private String text;
+    @Column(name = "pos")
     private String pos;
 
     public Syn() {

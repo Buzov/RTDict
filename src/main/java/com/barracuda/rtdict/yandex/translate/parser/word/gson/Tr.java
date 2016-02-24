@@ -1,15 +1,24 @@
 package com.barracuda.rtdict.yandex.translate.parser.word.gson;
 
-import java.util.List;
+import java.io.Serializable;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  *
  * @author RT
  */
-public class Tr {
+@Entity
+@Table(name = "translations")
+public class Tr extends Model implements Serializable{
+    
+    private static final long serialVersionUID = 7459685054346581572L;
 
+    @Column(name = "text")
     private String text;
+    @Column(name = "pos")
     private String pos;
     private Set<Syn> syn;
     private Set<Mean> mean;
