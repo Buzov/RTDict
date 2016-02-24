@@ -36,14 +36,6 @@ public class HibernateUtil {
             prop.setProperty("hibernate.format_sql", "true");
 
             Configuration configuration = new Configuration();
-            configuration
-                        .addAnnotatedClass(Word.class)
-                        .addAnnotatedClass(Def.class)
-                        .addAnnotatedClass(Tr.class)
-                        .addAnnotatedClass(Syn.class)
-                        .addAnnotatedClass(Mean.class)
-                        .addAnnotatedClass(Ex.class)
-                        .addAnnotatedClass(TrSecond.class);
 
             if (initFromXML) {
 

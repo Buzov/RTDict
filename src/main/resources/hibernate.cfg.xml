@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-  <!--  <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <!--  <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>net.devbay.entity.Family</class>
     <class>net.devbay.entity.Chair</class>-->
-  <session-factory>
-    <!-- Database connection settings -->
-    <property name="hibernate.connection.driver_class">org.h2.Driver</property>
-    <property name="hibernate.connection.url">jdbc:h2:./dict</property>
-    <property name="hibernate.connection.username">admin</property>
-    <property name="hibernate.connection.password">admin</property>
-    <property name="hibernate.default_schema">PUBLIC</property>
-    <!-- SQL dialect -->
-    <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
-    <!-- Drop and re-create the database schema on startup -->
-    <property name="hbm2ddl.auto">update</property>
-    <!--<property name="hibernate.hbm2ddl.auto" value="create"/>-->
-    <!-- JDBC connection pool (use the built-in) -->
-    <property name="connection.pool_size">1</property>
-    <!-- Disable the second-level cache  -->
-    <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
-    <!-- Echo all executed SQL to stdout -->
-    <property name="show_sql">true</property>
-    <property name="hibernate.format_sql">true</property>
-<!--    <mapping class="com.quasar.hibernateh2.dao.entity.student.Group"/>
-    <mapping class="com.quasar.hibernateh2.dao.entity.student.Student"/>
-    <mapping class="com.quasar.hibernateh2.dao.entity.student.Role"/>-->
+    <session-factory>
+        <!-- Database connection settings -->
+        <property name="hibernate.connection.driver_class">org.h2.Driver</property>
+        <property name="hibernate.connection.url">jdbc:h2:./dict</property>
+        <property name="hibernate.connection.username">admin</property>
+        <property name="hibernate.connection.password">admin</property>
+        <property name="hibernate.default_schema">PUBLIC</property>
+        <!-- SQL dialect -->
+        <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
+        <!-- Drop and re-create the database schema on startup -->
+        <property name="hbm2ddl.auto">create</property>
+        <!--<property name="hibernate.hbm2ddl.auto" value="update"/>-->
+        <!-- JDBC connection pool (use the built-in) -->
+        <property name="connection.pool_size">1</property>
+        <!-- Disable the second-level cache  -->
+        <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <mapping class="com.barracuda.rtdict.yandex.translate.parser.word.gson.Word"/>
+        <mapping class="com.barracuda.rtdict.yandex.translate.parser.word.gson.Def"/>    
+        <mapping class="com.barracuda.rtdict.yandex.translate.parser.word.gson.Tr"/>
+        <mapping class="com.barracuda.rtdict.yandex.translate.parser.word.gson.Syn"/>
+        <mapping class="com.barracuda.rtdict.yandex.translate.parser.word.gson.Mean"/>
+        <mapping class="com.barracuda.rtdict.yandex.translate.parser.word.gson.Ex"/>
+        <mapping class="com.barracuda.rtdict.yandex.translate.parser.word.gson.TrSecond"/>
     
-  </session-factory>
+    </session-factory>
 </hibernate-configuration>
