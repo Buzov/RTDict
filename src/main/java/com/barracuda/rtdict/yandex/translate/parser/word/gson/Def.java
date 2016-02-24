@@ -2,17 +2,35 @@ package com.barracuda.rtdict.yandex.translate.parser.word.gson;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.Serializable;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author RT
  */
-public class Def {
+@Entity
+@Table(name = "defs")
+public class Def extends Model implements Serializable{
+    
+    private static final long serialVersionUID = 3805346717002233074L;
 
+    @Column(name = "text")
     private String text;
+    @Column(name = "pos")
     private String pos;
+    @Column(name = "ts")
     private String ts;
+    @ManyToMany//(fetch = FetchType.EAGER)
+    @JoinTable(name = "tr_of_def",
+            joinColumns = {@JoinColumn(name="def_id")},
+            inverseJoinColumns = {@JoinColumn(name="tr_id")})
     private Set<Tr> tr;
     
     public Def() {

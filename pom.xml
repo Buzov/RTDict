@@ -9,6 +9,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
+        
+        <junit.version>4.12</junit.version>
+        
+        <h2.version>1.4.191</h2.version>
     </properties>
     
     <dependencies>
@@ -16,7 +20,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         
@@ -181,6 +185,13 @@
             <version>3.8.11.2</version>
         </dependency>
 
+
+        <!-- H2 database JDBC -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+        </dependency>
         
     </dependencies>
  
