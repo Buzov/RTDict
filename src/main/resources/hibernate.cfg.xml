@@ -7,15 +7,15 @@
   <session-factory>
     <!-- Database connection settings -->
     <property name="hibernate.connection.driver_class">org.h2.Driver</property>
-    <!--<property name="hibernate.connection.url">jdbc:h2:./test</property>-->
+    <property name="hibernate.connection.url">jdbc:h2:./dict</property>
     <property name="hibernate.connection.username">admin</property>
     <property name="hibernate.connection.password">admin</property>
     <property name="hibernate.default_schema">PUBLIC</property>
     <!-- SQL dialect -->
     <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
     <!-- Drop and re-create the database schema on startup -->
-    <property name="hbm2ddl.auto">create</property>
-    <!--<property name="hibernate.hbm2ddl.auto" value="update"/>-->
+    <property name="hbm2ddl.auto">update</property>
+    <!--<property name="hibernate.hbm2ddl.auto" value="create"/>-->
     <!-- JDBC connection pool (use the built-in) -->
     <property name="connection.pool_size">1</property>
     <!-- Disable the second-level cache  -->
@@ -23,9 +23,9 @@
     <!-- Echo all executed SQL to stdout -->
     <property name="show_sql">true</property>
     <property name="hibernate.format_sql">true</property>
-    <mapping class="com.quasar.hibernateh2.dao.entity.student.Group"/>
+<!--    <mapping class="com.quasar.hibernateh2.dao.entity.student.Group"/>
     <mapping class="com.quasar.hibernateh2.dao.entity.student.Student"/>
-    <mapping class="com.quasar.hibernateh2.dao.entity.student.Role"/>
+    <mapping class="com.quasar.hibernateh2.dao.entity.student.Role"/>-->
     
   </session-factory>
 </hibernate-configuration>

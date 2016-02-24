@@ -3,6 +3,7 @@ package com.barracuda.rtdict.yandex.translate.parser.word.gson;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,9 +30,14 @@ public class Def extends Model implements Serializable{
     private String ts;
     @ManyToMany//(fetch = FetchType.EAGER)
     @JoinTable(name = "tr_of_def",
-            joinColumns = {@JoinColumn(name="def_id")},
-            inverseJoinColumns = {@JoinColumn(name="tr_id")})
+            joinColumns = {
+                @JoinColumn(name = "def_id")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "tr_id")})
     private Set<Tr> tr;
+    
+    @ManyToMany(mappedBy = "def")
+    private Set<Word> words = new HashSet<>();
     
     public Def() {
         
@@ -81,6 +87,16 @@ public class Def extends Model implements Serializable{
         this.tr = tr;
     }
 
+    public Set<Word> getWords() {
+        return words;
+    }
+
+    public void setWords(Set<Word> words) {
+        this.words = words;
+    }
+    
+    
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -101,6 +117,7 @@ public class Def extends Model implements Serializable{
         }
         return sb.toString();
     }
+    
     
     
 

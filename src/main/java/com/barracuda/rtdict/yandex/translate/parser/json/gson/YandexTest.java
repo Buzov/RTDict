@@ -1,12 +1,16 @@
 package com.barracuda.rtdict.yandex.translate.parser.json.gson;
 
 
+import com.barracuda.rtdict.dao.Factory;
 import com.barracuda.rtdict.yandex.translate.parser.word.gson.Word;
 import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,6 +24,11 @@ public class YandexTest {
         Word word = gson.fromJson(readFile("./json/yandex_20.json"), Word.class);
         System.setProperty("console.encoding", "UTF-8");
         System.out.println(word);
+        try {
+            Factory.getInstance().getWordDAO().add(word);
+        } catch (SQLException ex) {
+            Logger.getLogger(YandexTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.println("taɪm");
     }
 

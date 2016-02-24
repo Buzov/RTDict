@@ -1,8 +1,11 @@
 package com.barracuda.rtdict.yandex.translate.parser.word.gson;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -19,6 +22,9 @@ public class Syn extends Model implements Serializable{
     private String text;
     @Column(name = "pos")
     private String pos;
+    
+    @ManyToMany(mappedBy = "syn")
+    private Set<Tr> trs = new HashSet<>();
 
     public Syn() {
 
@@ -44,6 +50,16 @@ public class Syn extends Model implements Serializable{
     public void setPos(String pos) {
         this.pos = pos;
     }
+
+    public Set<Tr> getTrs() {
+        return trs;
+    }
+
+    public void setTrs(Set<Tr> trs) {
+        this.trs = trs;
+    }
+    
+    
 
 
     @Override

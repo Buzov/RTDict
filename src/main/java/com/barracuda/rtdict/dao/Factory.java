@@ -1,10 +1,12 @@
 package com.barracuda.rtdict.dao;
 
+import com.barracuda.rtdict.dao.impl.WordDaoImplH2;
+
 
 
 public class Factory {
       
-//      private static StudentDAO studentDAO = null;
+      private static WordDaoImplH2 wordDAO = null;
       private static Factory instance = null;
 
       public static synchronized Factory getInstance(){
@@ -14,10 +16,10 @@ public class Factory {
             return instance;
       }
 
-//      public StudentDAO getStudentDAO(){
-//            if (studentDAO == null){
-//              studentDAO = new StudentDAOImpl();
-//            }
-//            return studentDAO;
-//      }   
+      public WordDaoImplH2 getWordDAO(){
+            if (wordDAO == null){
+              wordDAO = new WordDaoImplH2();
+            }
+            return wordDAO;
+      }   
 }

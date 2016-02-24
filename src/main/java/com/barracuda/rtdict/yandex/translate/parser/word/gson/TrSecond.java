@@ -1,8 +1,11 @@
 package com.barracuda.rtdict.yandex.translate.parser.word.gson;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -18,6 +21,9 @@ public class TrSecond extends Model implements Serializable{
     @Column(name = "text")
     private String text;
     
+    @ManyToMany(mappedBy = "tr")
+    private Set<Ex> trs = new HashSet<>();
+    
     public TrSecond() {
         
     }
@@ -32,6 +38,14 @@ public class TrSecond extends Model implements Serializable{
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public Set<Ex> getTrs() {
+        return trs;
+    }
+
+    public void setTrs(Set<Ex> trs) {
+        this.trs = trs;
     }
 
     @Override

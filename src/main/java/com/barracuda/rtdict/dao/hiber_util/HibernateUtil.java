@@ -1,5 +1,6 @@
 package com.barracuda.rtdict.dao.hiber_util;
 
+import com.barracuda.rtdict.yandex.translate.parser.word.gson.*;
 import java.util.Properties;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -35,11 +36,19 @@ public class HibernateUtil {
             prop.setProperty("hibernate.format_sql", "true");
 
             Configuration configuration = new Configuration();
+            configuration
+                        .addAnnotatedClass(Word.class)
+                        .addAnnotatedClass(Def.class)
+                        .addAnnotatedClass(Tr.class)
+                        .addAnnotatedClass(Syn.class)
+                        .addAnnotatedClass(Mean.class)
+                        .addAnnotatedClass(Ex.class)
+                        .addAnnotatedClass(TrSecond.class);
 
             if (initFromXML) {
-                
+
                 configuration.configure();
-                configuration.setProperty("hibernate.connection.url", "jdbc:h2:./test");
+                //configuration.setProperty("hibernate.connection.url", "jdbc:h2:./test");
                 //При вызове метода configure() без параметров, настройки беруться из файла nibernate.cfg.xml
                 // new Configuration().addResource("hibernate.cfg.xml").configure();
                 // configuration.configure("/com/rtw/test/hiber/hibernate.cfg.xml");
@@ -50,11 +59,14 @@ public class HibernateUtil {
                 // addClass(Employee1.class) will look for resource
                 // com/journaldev/hibernate/model/Employee1.hbm.xml (not good)
                 configuration
-                    .addProperties(prop)
-//                    .addAnnotatedClass(Student.class)
-//                    .addAnnotatedClass(Group.class)
-//                    .addAnnotatedClass(Role.class)
-                    ;
+                        .addProperties(prop)
+                        .addAnnotatedClass(Word.class)
+                        .addAnnotatedClass(Def.class)
+                        .addAnnotatedClass(Tr.class)
+                        .addAnnotatedClass(Syn.class)
+                        .addAnnotatedClass(Mean.class)
+                        .addAnnotatedClass(Ex.class)
+                        .addAnnotatedClass(TrSecond.class);
             }
 
             StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());

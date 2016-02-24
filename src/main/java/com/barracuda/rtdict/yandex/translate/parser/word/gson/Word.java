@@ -14,18 +14,20 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "words")
-public class Word extends Model implements Serializable{
-    
+public class Word extends Model implements Serializable {
+
     private static final long serialVersionUID = 3286702370981563231L;
 
     @ManyToMany//(fetch = FetchType.EAGER)
     @JoinTable(name = "def_of_words",
-            joinColumns = {@JoinColumn(name="word_id")},
-            inverseJoinColumns = {@JoinColumn(name="def_id")})
+            joinColumns = {
+                @JoinColumn(name = "word_id")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "def_id")})
     public Set<Def> def;
-    
+
     public Word() {
-        
+
     }
 
     public Word(Set<Def> def) {
@@ -39,7 +41,6 @@ public class Word extends Model implements Serializable{
     public void setDef(Set<Def> def) {
         this.def = def;
     }
-   
 
     @Override
     public String toString() {
@@ -50,5 +51,5 @@ public class Word extends Model implements Serializable{
         }
         return "------\n" + sb.toString() + "-----";
     }
-  
+
 }
