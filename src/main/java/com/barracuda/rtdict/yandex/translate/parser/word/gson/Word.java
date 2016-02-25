@@ -2,6 +2,7 @@ package com.barracuda.rtdict.yandex.translate.parser.word.gson;
 
 import java.io.Serializable;
 import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -24,7 +25,10 @@ public class Word extends Model implements Serializable {
                 @JoinColumn(name = "word_id")},
             inverseJoinColumns = {
                 @JoinColumn(name = "def_id")})
-    public Set<Def> def;
+    private Set<Def> def;
+    
+    @Column(name = "name")
+    private String name = "Djon";
 
     public Word() {
 
