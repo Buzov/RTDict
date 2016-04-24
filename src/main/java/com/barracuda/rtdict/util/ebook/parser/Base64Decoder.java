@@ -16,14 +16,16 @@ package com.barracuda.rtdict.util.ebook.parser;
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
+
 /**
  * Base64Decoder
  */
 class Base64Decoder {
-	private static byte[] charTable = new byte[256];
-	private static boolean[] isValidSymbol = new boolean[256];
-	
-	static {
+
+    private static byte[] charTable = new byte[256];
+    private static boolean[] isValidSymbol = new boolean[256];
+
+    static {
         for (int index = 0; index < 256; index++) {
             charTable[index] = -1;
             isValidSymbol[index] = false;
@@ -45,12 +47,13 @@ class Base64Decoder {
         charTable['/'] = 63;
         isValidSymbol['/'] = true;
         isValidSymbol['='] = true;
-	}
+    }
 
-	public static byte[] decode(byte[] input) {
-		byte[] data = purgeNonBase64(input);
-		if (data.length == 0)
-			return null;
+    public static byte[] decode(byte[] input) {
+        byte[] data = purgeNonBase64(input);
+        if (data.length == 0) {
+            return null;
+        }
         int numberQuadruple = data.length / 4;
         byte output[] = null;
         byte b1 = 0, b2 = 0, b3 = 0, b4 = 0, marker0 = 0, marker1 = 0;
@@ -81,8 +84,8 @@ class Base64Decoder {
                 b4 = charTable[marker1];
 
                 output[outIndex] = (byte) (b1 << 2 | b2 >> 4);
-                output[outIndex + 1] =
-                    (byte) (((b2 & 0xf) << 4) | ((b3 >> 2) & 0xf));
+                output[outIndex + 1]
+                        = (byte) (((b2 & 0xf) << 4) | ((b3 >> 2) & 0xf));
                 output[outIndex + 2] = (byte) (b3 << 6 | b4);
             } else if (marker0 == '=') {
                 output[outIndex] = (byte) (b1 << 2 | b2 >> 4);
@@ -90,15 +93,15 @@ class Base64Decoder {
                 b3 = charTable[marker0];
 
                 output[outIndex] = (byte) (b1 << 2 | b2 >> 4);
-                output[outIndex + 1] =
-                    (byte) (((b2 & 0xf) << 4) | ((b3 >> 2) & 0xf));
+                output[outIndex + 1]
+                        = (byte) (((b2 & 0xf) << 4) | ((b3 >> 2) & 0xf));
             }
             outIndex += 3;
         }
         return output;
-	}
+    }
 
-	private static byte[] purgeNonBase64(byte[] input) {
+    private static byte[] purgeNonBase64(byte[] input) {
         byte clean[] = new byte[input.length];
         int counter = 0;
         for (int i = 0; i < input.length; i++) {
@@ -109,5 +112,5 @@ class Base64Decoder {
         byte output[] = new byte[counter];
         System.arraycopy(clean, 0, output, 0, counter);
         return output;
-	}
+    }
 }

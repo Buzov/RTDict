@@ -1,70 +1,69 @@
 package com.barracuda.rtdict.util.random;
 
-import java.util.Date;
-import java.util.Random;
+/*
+ Класс для перемешивания массивов коллекций
+ */
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  *
- * @author RT
+ * @author Artur
  */
 public class Randomizer {
-    
-    String eng_rus_alphavit = "АаБбВвГгДдЕеЁёЖжЗзИиЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЪъЫыЬьЭэЮюЯяAaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
-    Random rnd = new Random(new Date().getTime());
-        /// <summary>
-        /// Перемешивание букв в слове за исключением первого и последнего символа
-        /// </summary>
-    
-    public static void main(String[] args) {
-        
+
+    /**
+     * Метод перемешивающий массивы. Используются стандартные средства JavaCore.
+     *
+     * @param list Массив для перемешивания
+     */
+    public static void shuffle(List<?> list) {
+        Collections.shuffle(list);
+    }
+
+    /**
+     * Метод перемешивающий массивы. Используются стандартные средства JavaCore.
+     *
+     * @param <T> Тип содержимого массива
+     * @param list Массив для перемешивания
+     * @return Перемешанный массив
+     */
+    public static <T> List<T> shuffleRx(List<T> list) {
+        Collections.shuffle(list);
+        return list;
+    }
+
+    /**
+     * Метод перемешивающий массивы. Используются стандартные средства JavaCore.
+     *
+     * @param <T> Тип содержимого массива
+     * @param list Массив для перемешивания
+     * @return Перемешанный массив - копия исходного массива
+     */
+    public static <T> List<T> shuffleCopy(List<T> list) {
+        List<T> tempList = new ArrayList<>(list.size());
+        for(int i = 0; i < list.size(); i++) {
+            tempList.add(null);
+        }
+        Collections.copy(tempList, list);
+        Collections.shuffle(tempList);
+        return tempList;
     }
     
-    public String rndSym(String word) {
-            if (word.length() > 2) {
-                String ret = "";
-                //Построим массив случайно перемешанных индексов кроме первого и последнего
-                int[] index = new int[word.length()];
-                for (int i = 0; i < word.length(); i++)
-                    index[i] = -1;
-                index[0] = 0;
-                index[word.length() - 1] = word.length() - 1;
-                int v = rnd.next(1, word.length() - 1);
-                rnd.nextBytes(new byte[]{2});
-                for (int i = 1; i < word.length() - 1; i++) {
-                    while (index[v] != -1)
-                        v = rnd.next(1, word.length() - 1);
-                    index[v] = i;
-                }
-                //Соберем слово используя массив индексов
-                for (int i = 0; i < word.length(); i++) {
-                    ret += word[index[i]];
-                }
-                return ret;
-            }
-            return word;
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+        list.add(6);
+        list.add(7);
+        List<Integer> tempList = shuffleCopy(list);
+        for (int i : tempList) {
+            System.out.println(i);
         }
-        /// <summary>
-        /// Преобразование текста
-        /// </summary>
-        private String TransformText(String text)
-        {
-            int begin;
-            String nword;
-            char[] array = text.toCharArray();
-            for (int i = 0; i < array.length; i++) {
-                if (eng_rus_alphavit.contains(array[i].toString())) {
-                    begin = i;
-                    while (eng_rus_alphavit.Contains(array[i].ToString()) && (++i < array.Length)) ;
-                    nword = RndSym(text.Substring(begin, i - begin));
-                    //Замена исходного слова на перемешанное
-                    for (int j = begin; j < i; j++) {
-                        array[j] = nword[j - begin];
-                    }
-                }
-            }
-            String ret = "";
-            for (char c : array)
-                ret += c;
-            return ret;
-        }
+    }
+
 }
